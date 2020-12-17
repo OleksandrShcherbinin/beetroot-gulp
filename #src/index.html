@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Beetroot Academy Exam number two</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicons/favicon-16x16.png">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <script src="https://kit.fontawesome.com/b557d6a169.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/style.min.css">
+</head>
+<body>
+@@include('_header.html')
+<main>
+    @@include('_about.html')
+    @@include('_news.html')
+    @@include('_gallery.html')
+</main>
+<div class="map">
+</div>
+@@include('_footer.html')
+<script src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap"
+async defer></script>
+<script src="js/main.min.js"></script>
+</body>
+</html>

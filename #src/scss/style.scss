@@ -1,0 +1,765 @@
+@import "normalize";
+@import "fonts";
+@import "slick";
+@import "variables";
+@import "mixins";
+
+.header {
+    position: relative;
+    max-width: $max;
+    margin: $center;
+    max-height: 800px;
+    height: 100vh;
+    background: url("../img/Lines_^__^.png") center no-repeat, url("../img/header.png") center / cover;
+
+    &-nav {
+        max-width: 1180px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 45px 0;
+        &-logo {
+             picture:last-child {
+                    display: none;
+             }
+            @media only screen and (max-width: 500px) {
+                align-self: flex-start;
+                margin-top: 10px;
+            }
+            @media only screen and (max-width: 500px) {
+                picture:first-child {
+                    width: 70%;
+                }
+            }
+            @media only screen and (max-width: 400px) {
+                picture:first-child {
+                    display: none;
+                }
+            }
+            @media only screen and (max-width: 399.98px) {
+                picture:last-child {
+                    display: block;
+                }
+            }
+        }
+        &__burger-menu {
+            cursor: pointer;
+            z-index: 9999999;
+            @media only screen and (min-width: 900px) {
+                display: none;
+            }
+        }
+        @media only screen and (max-width: 900px) {
+            &__burger-menu {
+                display: none;
+            }
+            &__burger-img,
+            &__burger-img:before,
+            &__burger-img:after {
+                position: absolute;
+                top: 30px;
+                right: 30px;
+                transform: translate(-50%, -50%);
+                width: 42px;
+                height: 5px;
+                background: $light-text;
+                cursor: pointer;
+            }
+            &__burger-img:before {
+                content: "";
+                top: -8px;
+                right: 0;
+                transform: translate(0, 0);
+                transition: all 0.3s;
+            }
+            &__burger-img:after {
+                content: "";
+                top: 8px;
+                right: 0;
+                transform: translate(0, 0);
+                transition: all 0.3s;
+            }
+            &__burger-menu:checked ~ &-menu {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                margin-right: 90px;
+            }
+            &__burger-menu:checked ~ &-menu .header-nav-menu__link{
+                font-size: 24px;
+            }
+            &__burger-menu:checked ~ &__burger-img {
+                transform: rotate(-45deg);
+                transition: all 0.3s;
+                 z-index: 9999999;
+            }
+            &__burger-menu:checked ~ &__burger-img:before {
+                transform: rotate(90deg);
+                transition: all 0.3s;
+                top: 0;
+            }
+            &__burger-menu:checked ~ &__burger-img:after {
+                display: none;
+            }
+        }
+        &--scroll {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            min-height: 10%;
+            background: #3281d5;
+            padding: 0 0;
+            transition: top 0.8s, left 0ms;
+            -webkit-box-shadow: 10px 10px 9px 5px rgba(0, 0, 0, 0.7);
+            box-shadow: 10px 10px 9px 5px rgba(0, 0, 0, 0.7);
+            z-index: 999;
+        }
+        @include menu(flex);
+        @media only screen and (max-width: 899.98px) {
+            @include menu(none);
+        }
+        @include social(20%, flex);
+        @media only screen and (max-width: 899.98px) {
+            @include social(20%, none);
+        }
+    }
+
+    &-slider {
+        position: relative;
+        width: 100%;
+        height: 40%;
+        margin: 75px auto;
+        display: flex;
+        align-items: center;
+
+        &-slide {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+
+            &__title {
+                @include text($light-text, ("Gotham-Bold", sans-serif), 80px, 700, uppercase);
+                letter-spacing: 4px;
+                margin: 39px 0;
+                @media only screen and (max-width: 676px) {
+                    font-size: 40px;
+                }
+            }
+
+            &__info {
+                @include text($light-text, ("Gotham-Book", sans-serif), 18px, 400, uppercase);
+                letter-spacing: 5.4px;
+                margin: 0 0;
+                @media only screen and (max-width: 676px) {
+                    font-size: 14px;
+                }
+            }
+        }
+        .slick-dots {
+            position: absolute;
+            top: 50%;
+            right: 2.5%;
+            transform: translateY(-50%);
+            li {
+                margin-bottom: 40px;
+
+                button {
+                    font-size: 0;
+                    width: 9px;
+                    height: 9px;
+                    border-radius: 50%;
+                    border: 1px solid #9299a1;
+                    padding-left: 0;
+                    cursor: pointer;
+                    background-color: transparent;
+                }
+            }
+            .slick-active {
+                button {
+                    background-color: white;
+                    outline: none;
+                    overflow: visible;
+                    text-transform: none;
+                    outline-offset: 0;
+                }
+            }
+        }
+    }
+    &-arrow__down {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        border: 1px solid #9299a1;
+        border-radius: 50%;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #9299a1;
+        cursor: pointer;
+    }
+    &-arrow__down:hover {
+        border-color: white;
+        color: white;
+    }
+}
+
+.we-do {
+    max-width: $max;
+    min-height: 1633px;
+    margin: $center;
+    background-color: #ffffff;
+    @include title($dark-text, 264px, 43px, (0.83em 0 0.83em 0));
+    &-wrapper {
+        width: 100%;
+        min-height: 1369px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        &-article {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            @media only screen and (max-width: 567px) {
+                flex-direction: column;
+                align-items: center;
+            }
+            &__back {
+                cursor: pointer;
+                max-width: 585px;
+                width: 36.5%;
+                height: 470px;
+                background: #55b7ff;
+                position: relative;
+                @media only screen and (max-width: 567px) {
+                    width: 60%;
+                    height: 300px;
+                }
+                @media only screen and (max-width: 400px) {
+                    width: 70%;
+                }
+            }
+            &__img {
+                cursor: pointer;
+                height: 470px;
+                max-width: 630px;
+                width: 40%;
+                position: absolute;
+                background: url("../img/joel-filipe-151697.jpg") center / cover;
+                @media only screen and (max-width: 567px) {
+                    height: 300px;
+                    width: 65%;
+                }
+                @media only screen and (max-width: 400px) {
+                    width: 70%;
+                }
+            }
+            &-info {
+                width: 32%;
+                align-self: flex-end;
+                flex-direction: column;
+                justify-content: space-between;
+                margin: 0 10%;
+                @media only screen and (max-width: 567px) {
+                    align-self: center;
+                    width: 70%;
+                }
+                &__small {
+                    @include text($dark-text, ("Gotham-Book", sans-serif), 22px, 400, uppercase);
+                    @media only screen and (max-width: 567px) {
+                        margin-top: 80px;
+                        font-size: 16px;
+                    }
+                }
+                &__big {
+                    @include text($dark-text, ("Gotham-Bold", sans-serif), 44px, 700, uppercase);
+                    margin-top: 0;
+                    @media only screen and (max-width: 567px) {
+                        font-size: 24px;
+                    }
+                }
+                &__text {
+                    @include text($grey-text, ("Open Sans", sans-serif), 18px, 400, unset);
+                    overflow: hidden;
+                    height: 80px;
+                }
+                &__button {
+                    @include button(40px 0 60px 0);
+                }
+                &__button:hover {
+                    background-color: #7d5ffa;
+                }
+                @media (hover: none) {
+                    &__button:active {
+                        background-color: #7d5ffa;
+                    }
+                }
+                &__location {
+                    @include text($dark-text, ("Open Sans", sans-serif), 18px, 400, unset);
+                }
+                &__location svg {
+                    margin-right: 6px;
+                }
+            }
+        }
+        &-article:last-child {
+            flex-direction: row-reverse;
+            @media only screen and (max-width: 567px) {
+                flex-direction: column;
+                align-items: center;
+            }
+            .we-do-wrapper-article__back {
+                background: #7e5aff;
+            }
+            .we-do-wrapper-article__img {
+                background: url("../img/photos-1284iH4Hjf4mhNgW.jpg") center / cover;
+                @-moz-document url-prefix() {
+                    position: absolute;
+                    right: 0;
+                }
+            }
+        }
+    }
+}
+
+.news {
+    max-width: $max;
+    min-height: 1035px;
+    margin: $center;
+    background-color: #ffffff;
+    background-image:  url("../img/city_2_@2x.png"), linear-gradient(45deg, #3c7fd4 0%, #24ccfa 100%);
+    background-position: left bottom;
+    background-repeat: no-repeat;
+    @include title($light-text, 264px, 43px, (0.83em 0 0.83em 0));
+    &-slider {
+        position: relative;
+        width: 88%;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        @media only screen and (max-width: 567px){
+            width: 100%;
+        }
+        &-slide {
+            width: 370px;
+            margin: 0 20px;
+            cursor: pointer;
+            @media only screen and (max-width: 567px) {
+                picture  * {
+                    width: 250px;
+                }
+            }
+            @media only screen and (max-width: 415px) {
+                picture * {
+                    width: 200px;
+                }
+            }
+            &-info * {
+                margin: 0 30px 30px 20px;
+            }
+            &-info {
+                position: relative;
+                margin: 0 0;
+                padding-top: 30px;
+                padding-bottom: 30px;
+                background-color: #ffffff;
+                width: 370px;
+                height: 274px;
+
+                @media only screen and (max-width: 567px) {
+                    width: 250px;
+                }
+                @media only screen and (max-width: 415px) {
+                    width: 200px;
+                }
+                &__title {
+                    @include text($dark-text, ("Gotham-Bold", sans-serif), 22px, 700, uppercase);
+                    margin-bottom: 0;
+                    @media only screen and (max-width: 567px) {
+                        font-size: 14px;
+                    }
+                }
+                &__text {
+                    @include text($grey-text, ("Open Sans", sans-serif), 18px, 400, unset);
+                    @media only screen and (max-width: 567px) {
+                        font-size: 10px;
+                    }
+                }
+                &-author {
+                    position: absolute;
+                    bottom: -30px;
+                    left: -15px;
+                    margin: 0 0 10px;
+                    display: flex;
+                    align-items: flex-end;
+                    @media only screen and (max-width: 567px) {
+                        picture * {
+                            height: 40px;
+                            width: 40px;
+                        }
+                    }
+                    @media only screen and (max-width: 415px) {
+                        picture * {
+                            height: 30px;
+                            width: 30px;
+                        }
+                    }
+                    &__avatar {
+                        @media only screen and (max-width: 567px) {
+                            picture * {
+                                width: 30px;
+                                height: 30px;
+                            }
+                        }
+                    }
+                    &-name {
+                        position: absolute;
+                        bottom: 0;
+                        left: 50%;
+                        width: 200px;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: flex-end;
+
+                        &__name {
+                            @include text($dark-text, ("Gotham-Book", sans-serif), 18px, 400, uppercase);
+                            width: 100%;
+                            @media only screen and (max-width: 567px) {
+                                font-size: 12px;
+                            }
+                            @media only screen and (max-width: 415px) {
+                                font-size: 8px;
+                            }
+                        }
+
+                        &__date {
+                            @include text(#55b7ff, ("Gotham-Book", sans-serif), 14px, 400, unset);
+                            @media only screen and (max-width: 567px) {
+                                font-size: 10px;
+                            }
+                             @media only screen and (max-width: 415px) {
+                                font-size: 8px;
+                            }
+                        }
+                    }
+                }
+            }
+            &-info-author-name h5 {
+                margin-left: 20px;
+                margin-bottom: 5px;
+            }
+        }
+        @media only screen and (max-width: 567px) {
+            &-slide > * {
+                width: 250px;
+                height: 200px;
+            }
+        }
+        @media only screen and (max-width: 415px) {
+            &-slide > * {
+                width: 200px;
+                height: 170px;
+            }
+        }
+        .slick-dots {
+            position: absolute;
+            display: inline-flex;
+            bottom: -120px;
+            left: 50%;
+            transform: translateX(-50%);
+            li {
+                margin-bottom: 40px;
+                button {
+                    margin-right: 40px;
+                    font-size: 0;
+                    width: 9px;
+                    height: 9px;
+                    border-radius: 50%;
+                    border: 1px solid #9299a1;
+                    padding-left: 0;
+                    cursor: pointer;
+                    background-color: transparent;
+                }
+            }
+            .slick-active {
+                button {
+                    background-color: white;
+                    outline: none;
+                    overflow: visible;
+                    text-transform: none;
+                    outline-offset: 0;
+                }
+            }
+        }
+    }
+}
+
+.gallery {
+    max-width:  $max;
+    min-height: 1000px;
+    margin: $center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    @include title($dark-text, 264px, 43px, (0.83em 0 0.83em 0));
+    &-grid {
+        max-width: 1170px;
+        width: 73%;
+        min-height: 438px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        grid-gap: 10px;
+        @media only screen and (max-width: 992px) {
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr 1fr;
+        }
+        @media only screen and (max-width: 767px) {
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr 1fr 1fr;
+        }
+        @media only screen and (max-width: 567px) {
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+        }
+        &__pic {
+            height: 214px;
+            cursor: pointer ;
+            &--big {
+                height: 438px;
+                grid-row-start: 1;
+                grid-row-end: 3;
+                grid-column-start: 1;
+                grid-column-end: 3;
+                background: url("../img/gallery/scott-webb-176434.jpg") center / cover;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                @media only screen and (max-width: 767px) {
+                    grid-column-end: 2;
+                }
+            }
+            &--big:hover {
+                -webkit-filter: blur(4px);
+                filter: blur(4px);
+            }
+        }
+        &__pic:hover {
+            -webkit-filter: blur(4px);
+            filter: blur(4px);
+        }
+        &__pic:nth-child(2) {
+            background: url("../img/gallery/photos-13323p6Bdc0uhr8Bq.jpg") center / cover;
+        }
+        &__pic:nth-child(3) {
+            background: url("../img/gallery/echo-grid-156713.jpg") center / cover;
+        }
+        &__pic:nth-child(4) {
+            background: url("../img/gallery/fuse-brussels-169216.jpg") center / cover;
+        }
+        &__pic:last-child {
+            background: url("../img/gallery/tu-tram-pham-202263.jpg") center / cover;
+        }
+    }
+    &__button {
+        @include button(60px 0 140px 0);
+    }
+    &__button:hover {
+        background-color: #7d5ffa;
+    }
+}
+.map {
+    max-width: $max;
+    height: 700px;
+    margin: $center;
+    @media only screen and (max-width: 567px) {
+        height: 500px;
+    }
+}
+
+.footer {
+    position: relative;
+    max-width: $max;
+    margin: $center;
+    height: 524px;
+    background-color: #ffffff;
+    background-image: url("../img/scott-webb-176434.png"), linear-gradient(45deg, #55b7ff 0%, #7e5aff 100%);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &-nav {
+        position: relative;
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        @include menuFooter;
+        @media only screen and (max-width: 992px) {
+            width: 70%;
+        }
+        @media only screen and (max-width: 767px) {
+            width: 80%;
+        }
+        @media only screen and (max-width: 576px) {
+            width: 100%;
+        }
+        &-menu {
+            @media only screen and (max-width: 576px) {
+            display: none;
+            }
+        }
+        &__line {
+            width: 100%;
+            position: absolute;
+            top: 53px;
+            height: 1px;
+            background-color: #ffffff;
+            opacity: 0.1;
+        }
+        &-wrapper {
+            display: flex;
+            justify-content: space-between;
+            @include social(30%, flex);
+            @media only screen and (max-width: 576px) {
+                margin-top: 100px;
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        &-copyright {
+            display: flex;
+            color: #ffffff;
+            font-family: "Gotham-Book", sans-serif;
+            font-size: 14px;
+            margin-top: 38px;
+            @media only screen and (max-width: 576px){
+                margin: 10px 10px;
+            }
+            &__text {
+                font-size: 14px;
+                font-weight: 400;
+                margin: 0 30px 0 0;
+            }
+            &__made-in {
+                position: relative;
+                font-weight: 300;
+                margin: 0 0;
+            }
+            &__made-in:before {
+                position: absolute;
+                top: 0;
+                left: -15px;
+                content: "";
+                height: 100%;
+                opacity: 0.5;
+                border-right: 1px solid $light-text;
+            }
+        }
+    }
+    &-contact {
+        width: 48%;
+        max-width: 770px;
+        height: 100%;
+        max-height: 450px;
+        box-shadow: 0 -4px 30px rgba(133, 133, 133, 0.2);
+        background: url("../img/city@2x.png") left bottom white no-repeat;
+        position: absolute;
+        top: -55%;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 0 50px;
+        @include title($dark-text, 170px, 43px, (0.83em 0 0 0));
+        @media only screen and (max-width: 567px) {
+            width: 70%;
+            padding: 0 25px;
+        }
+        &-title {
+            @media only screen and (max-width: 676px) {
+                &__title {
+                    font-size: 22px;
+                }
+            }
+            @media only screen and (max-width: 365px) {
+                &__title {
+                    font-size: 16px;
+                }
+            }
+        }
+        &-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            &-info {
+                &__text {
+                    margin: 0 0 30px 0;
+                    @include text($dark-text, ("Gotham-Bold", sans-serif), 1.2vw, 400, unset);
+                    @media only screen and (max-width: 567px) {
+                        font-size: 12px;
+                    }
+                }
+            }
+            &-info svg {
+                margin-right: 10px;
+            }
+            &-info svg path {
+                fill: #6f42c1;
+            }
+
+            &-form {
+                width: 40%;
+                display: flex;
+                flex-direction: column;
+                &__name {
+                    height: 40px;
+                    @include text($dark-text, ("Gotham-Book", sans-serif), 1.2vw, 400, uppercase);
+                    border: none;
+                    border-bottom: 1px solid $dark-text;
+                    margin-bottom: 40px;
+                    @media only screen and (max-width: 567px) {
+                        font-size: 10px;
+                    }
+                }
+                &__name:focus {
+                    outline: none;
+                    opacity: 0.5;
+                }
+                &__button {
+                    align-self: flex-end;
+                    width: 50%;
+                    height: 50px;
+                    cursor: pointer;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    display: -webkit-flex;
+                    -webkit-align-items: center;
+                    background-color: transparent;
+                    border: 1px solid $dark-text;
+                    @media only screen and (max-width: 767px){
+                        height: 30px;
+                        width: 80%;
+                        font-size: 10px;
+                    }
+                    @media only screen and (max-width: 567px){
+                        height: 30px;
+                        width: 100%;
+                    }
+                }
+                &__button:hover {
+                    background-color: #7d5ffa;
+                }
+            }
+        }
+    }
+}
